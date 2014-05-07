@@ -28,30 +28,25 @@ Grab module with
 ``require('async-template');``
 
 
-
 ## Usage
 
 ### Basics
 
-A new render is initiated via the public ``render`` method
+A new render is initiated via the public ``render`` method.
 
 ```js
 asyncTemplate.render(myTemplate)
-
 ```
 this will return a new instance.
 
-<br/>
 
-Provide values asynchronously via ``provide`` method
+Provide values asynchronously via the ``provide`` method.
 
 ```js
 .provide(token, function (ctx, done) {})
-	
-``` 
+```
 chain as many as you like.
 
-<br/>
 
 To finally render the template and retrieve the results invoke the ``end`` method.
 ```js
@@ -60,21 +55,17 @@ To finally render the template and retrieve the results invoke the ``end`` metho
 
 ###Extras
 
-A context object optionally be provided via ``context`` method.
+A context object optionally be provided via the ``context`` method.
 ```js
 .context({some:'value'})
-	
-``` 
+```
 this object will be provided as a parameter in each ``provide`` handler.
 
-<br/>
 
-
-Optionally the template parameter can be omitted from the ``render`` method and instead be provided via ``template`` method
+Optionally the template parameter can be omitted from the ``render`` method and instead be provided via the ``template`` method.
 ```js
 .template(myTemplate);
-	
-``` 
+```
 this is nifty if you want to re-use registered providers on a new template.
 
 
@@ -82,7 +73,6 @@ this is nifty if you want to re-use registered providers on a new template.
 
 Providing many values
 ```js
-
 asyncTemplate.
 	render('I {{feeling}} {{language}}!').
 	provide('feeling',function (ctx, done) {
@@ -94,7 +84,6 @@ asyncTemplate.
 	end(function (err, rendered) {
 		// rendered === 'I love Javascript!'
 	});
-
 ```
 
 Passing context object
@@ -112,7 +101,6 @@ asyncTemplate.
 	end(function (err, rendered) {
 		// rendered === 'protocol://authservice.site?authToken=qwerty'
 	});
-
 ```
 
 Same provider for different templates
@@ -135,7 +123,6 @@ renderer.template('aaa {{hello}} bbb').
 	end(function (err, rendered) {
         //rendered === 'aaa world bbb'
     });
-
 ```
 
 ## License
