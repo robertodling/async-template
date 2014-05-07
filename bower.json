@@ -1,0 +1,32 @@
+{
+	"name": "async-template",
+	"version": "0.1.0",
+	"homepage": "https://github.com/robertodling/async-template",
+	"authors": [
+		"Robert Ödling <robert.odling@gmail.com>"
+	],
+	"description": "Build templates asynchronously",
+	"main": "build/async-template.min.js",
+	"moduleType": [
+		"globals",
+		"node"
+	],
+	"keywords": [
+		"async-template",
+		"async",
+		"asynchronous",
+		"template",
+		"templates",
+		"templating"
+	],
+	"license": "MIT",
+	"ignore": [
+		"**/.*",
+		"Gruntfile.js",
+		"karma.conf.js",
+		"**/*.json",
+		"node_modules",
+		"bower_components",
+		"specs"
+	]
+}
