@@ -17,11 +17,11 @@ asyncTemplate.
 ## Installation
 
 ```bash
-$ npm install --save ...
+$ npm install --save async-template
 ```
 
 ```bash
-$ bower install --save ...
+$ bower install --save async-template
 ```
 
 Grab module with
