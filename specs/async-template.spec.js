@@ -1,14 +1,3 @@
-asyncTemplate.
-	render('{{foo}}').
-	provide('foo',function (data, done) {
-		done(null, 'bar');
-	}).
-	end(function (err, rendered) {
-		expect(rendered).to.equal('bar');
-		done();
-	});
-
-
 describe('async-template', function () {
 	'use strict';
 
@@ -157,5 +146,87 @@ describe('async-template', function () {
 		});
 	});
 
+	describe('misc', function () {
+
+		it('should correctly render simple example', function () {
+
+
+			asyncTemplate.
+				render('{{foo}}').
+				provide('foo',function (ctx, done) {
+					done(null, 'bar');
+				}).
+				end(function (err, rendered) {
+					expect(rendered).to.equal('bar');
+				});
+		});
+
+		it('should correctly render multi provide example', function () {
+
+
+			asyncTemplate.
+				render('I {{feeling}} {{language}}!').
+				provide('feeling',function (ctx, done) {
+					done(null, 'love');
+				}).
+				provide('language',function (ctx, done) {
+					done(null, 'Javascript');
+				}).
+				end(function (err, rendered) {
+					expect(rendered).to.equal('I love Javascript!');
+				});
+		});
+
+		it('should correctly render passing context example', function (done) {
+			asyncTemplate.
+				render('protocol://authservice.site?authToken={{token}}').
+				provide('token',function (ctx, done) {
+					// generate token with ctx.user and ctx.password async
+					setTimeout(function () {
+						done(null, "qwerty");
+					}, 0);
+
+				}).
+				context({user: 'john', password: '1234'}).
+				end(function (err, rendered) {
+					expect(rendered).to.equal('protocol://authservice.site?authToken=qwerty');
+					done();
+				});
+		});
+		describe('saved renderer', function () {
+			var renderer;
+			before(function () {
+				renderer = asyncTemplate.render().
+					provide('foo',function (ctx, done) {
+						done(null, 'bar');
+					}).
+					provide('hello', function (ctx, done) {
+						done(null, 'world');
+					});
+			});
+
+			it('should correctly render template with foo token', function (done) {
+
+				renderer.template('aaa {{foo}} bbb').
+					end(function (err, rendered) {
+						expect(rendered).to.equal('aaa bar bbb');
+						done();
+					});
+			});
+
+			it('should correctly render template with foo token', function (done) {
+
+				renderer.template('aaa {{hello}} bbb').
+					end(function (err, rendered) {
+						expect(rendered).to.equal('aaa world bbb');
+						done();
+					});
+			});
+		});
+
+
+	});
+
 
 });
+
