@@ -38,7 +38,7 @@ module.exports = function (grunt) {
 			vendor: {
 
 				src: [],
-				dest: 'build/each-async.js',
+				dest: 'tmp/each-async.js',
 				options: {
 					alias: ['./node_modules/each-async/each-async.js:each-async']
 				}
@@ -50,15 +50,24 @@ module.exports = function (grunt) {
 					external: ['each-async']
 				},
 				src: [],
-				dest: 'build/async-template.js'
+				dest: 'tmp/async-template.js'
 			}
 
 		},
 		uglify: {
 			build: {
 				files: {
-					'build/async-template.min.js': ['src/async-template.js']
+					'build/async-template.min.js': ['tmp/concat/async-template.js']
 				}
+			}
+		},
+		concat: {
+			options: {
+				separator: ';'
+			},
+			dist: {
+				src: ['tmp/*.js'],
+				dest: 'tmp/concat/async-template.js'
 			}
 		}
 	});
@@ -68,7 +77,8 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.registerTask('build', ['jshint', 'browserify']);
+	grunt.loadNpmTasks('grunt-contrib-concat');
+	grunt.registerTask('build', ['jshint', 'browserify', 'concat', 'uglify']);
 	grunt.registerTask('ci', ['build', 'karma:continuous']);
 	grunt.registerTask('develop', ['build', 'karma:develop:run', 'watch:all']);
 	grunt.registerTask('test-server', ['karma:develop:start']);

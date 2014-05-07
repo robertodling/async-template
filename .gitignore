@@ -2,5 +2,6 @@
 *.ipr
 .idea
 .grunt
+tmp
 node_modules
 bower_components
