@@ -56,6 +56,9 @@ module.exports = function (grunt) {
 		},
 		uglify: {
 			build: {
+				options: {
+					preserveComments: 'some'
+				},
 				files: {
 					'build/async-template.min.js': ['tmp/concat/async-template.js']
 				}

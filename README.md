@@ -55,14 +55,14 @@ To finally render the template and retrieve the results invoke the ``end`` metho
 
 ###Extras
 
-A context object optionally be provided via the ``context`` method.
+A context object can optionally be provided via the ``context`` method.
 ```js
 .context({some:'value'})
 ```
 this object will be provided as a parameter in each ``provide`` handler.
 
 
-Optionally the template parameter can be omitted from the ``render`` method and instead be provided via the ``template`` method.
+The template parameter can be omitted from the ``render`` method and instead be provided via the ``template`` method.
 ```js
 .template(myTemplate);
 ```

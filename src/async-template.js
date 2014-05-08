@@ -1,3 +1,10 @@
+/*!
+ * @license async-template
+ * Build templates asynchronously
+ * (c) Robert Ödling https://github.com/robertodling/async-template
+ * License: MIT (http://www.opensource.org/licenses/mit-license.php)
+ */
+
 'use strict';
 
 var eachAsync = require('each-async');
